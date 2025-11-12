@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:goalified_mobile/widgets/left_drawer.dart';
+import 'package:goalified_mobile/screens/product_form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -20,6 +22,9 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         toolbarHeight: 50,
+        iconTheme: const IconThemeData(
+          color: Colors.white, 
+        ),
         title: const Text(
           'Goalified.',
           style: TextStyle(
@@ -28,6 +33,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
+      drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Container(
         decoration: const BoxDecoration(
@@ -167,6 +173,13 @@ class ItemCard extends StatelessWidget {
               ..showSnackBar(
                 SnackBar(content: Text("Kamu telah menekan tombol ${item.name}"))
               );
+
+              if (item.name == "Add Product") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProductFormPage()),
+                );
+              }
           },
           child: Padding(
             padding: const EdgeInsets.all(8),
