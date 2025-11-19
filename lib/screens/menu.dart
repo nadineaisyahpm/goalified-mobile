@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:goalified_mobile/widgets/left_drawer.dart';
 import 'package:goalified_mobile/screens/product_form.dart';
+import 'package:goalified_mobile/screens/product_entry_list.dart';
+import 'package:goalified_mobile/widgets/custom_app_bar.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -19,20 +21,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        toolbarHeight: 50,
-        iconTheme: const IconThemeData(
-          color: Colors.white, 
-        ),
-        title: const Text(
-          'Goalified.',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(title: "Goalified."),
       drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Container(
@@ -85,6 +74,7 @@ class MyHomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black, // text color
+                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w700,
                       fontSize: 15,
                       ),
@@ -135,7 +125,7 @@ class InfoCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
             ),
             const SizedBox(height: 5.0),
             Text(content),
@@ -171,15 +161,29 @@ class ItemCard extends StatelessWidget {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(
-                SnackBar(content: Text("Kamu telah menekan tombol ${item.name}"))
+                SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!", style: TextStyle(fontFamily: 'Poppins'),))
               );
 
-              if (item.name == "Add Product") {
+              if (item.name == "Create Product") {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const ProductFormPage()),
                 );
-              }
+              } else if (item.name == "All Products") {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProductEntryListPage()
+                      ),
+                  );
+              } else if (item.name == "My Products") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProductEntryListPage(showOnlyMine: true),
+                    ),
+                  );
+                }
           },
           child: Padding(
             padding: const EdgeInsets.all(8),

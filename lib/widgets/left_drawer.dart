@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goalified_mobile/screens/menu.dart';
 import 'package:goalified_mobile/screens/product_form.dart';
+import 'package:goalified_mobile/screens/product_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -42,7 +43,7 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.home_outlined),
-            title: const Text('Home Page'),
+            title: const Text('Home Page', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 15)),
             onTap: () {
               Navigator.pushReplacement(
                   context,
@@ -53,7 +54,7 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.post_add),
-            title: const Text('Add Product'),
+            title: const Text('Create Product', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 15),),
             onTap: () {
              Navigator.push(
                 context,
@@ -63,6 +64,17 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Product List', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 15),),
+            onTap: () {
+                // Route to news list page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProductEntryListPage()),
+                );
+            },
+        ),
         ],
       ),
     );
