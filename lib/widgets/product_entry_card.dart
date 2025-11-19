@@ -90,3 +90,5 @@ class ProductEntryCard extends StatelessWidget {
     );
   }
 }
+
+// haalooooooooooooo ntes trigger
